@@ -17,7 +17,6 @@ class CreateJurusansTable extends Migration
             $table->id();
             $table->string('kode')->unique();
             $table->string('nama');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
