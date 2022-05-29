@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapelRequest;
+use App\Http\Requests\UpdateMapelRequest;
 use App\Models\Kelas;
 use App\Models\MataPelajaran;
 use App\Models\TahunAkademik;
@@ -96,7 +97,13 @@ class MataPelajaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kelas = Kelas::with('jurusan')->get();
+        $tahun = TahunAkademik::get();
+        $data = MataPelajaran::find($id);
+        if (!$data) {
+            return redirect()->route('mapel.index')->with('error', 'Mata pelajaran tidak ditemukan!');
+        }
+        return view('admin.mapel.edit', compact('kelas', 'tahun', 'data'));
     }
 
     /**
@@ -106,9 +113,23 @@ class MataPelajaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMapelRequest $request, $id)
     {
-        //
+        $request->validated();
+        $data = MataPelajaran::find($id);
+        if (!$data) {
+            return redirect()->back()->with('error', 'Mata pelajaran tidak ditemukan!');
+        }
+        $request->validate([
+            'kode_mapel' => 'required|unique:mata_pelajarans,kode_mapel,' . $data->id,
+        ], [
+            'kode_mapel.unique' => 'Kode mapel sudah terdaftar.',
+        ]);
+        $payload = $request->all();
+        $payload['start'] = Carbon::parse($request->start)->format('h:i');
+        $payload['end'] = Carbon::parse($request->end)->format('h:i');
+        $data->update($payload);
+        return redirect()->route('mapel.index')->with('success', 'Mata pelajaran berhasil diupdate!');
     }
 
     /**
@@ -119,6 +140,12 @@ class MataPelajaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = MataPelajaran::findOrFail($id);
+        try {
+            $data->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Mata pelajaran masih digunakan dalam data lain!');
+        }
+        return redirect()->back()->with('success', 'Mata pelajaran berhasil dihapus.');
     }
 }

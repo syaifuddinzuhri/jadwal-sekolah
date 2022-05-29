@@ -101,14 +101,14 @@ class JurusanController extends Controller
     public function update(UpdateJurusanRequest $request, $id)
     {
         $data = Jurusan::find($id);
+        if (!$data) {
+            return redirect()->back()->with('error', 'Jurusan tidak ditemukan!');
+        }
         $request->validate([
             'kode' => 'required|unique:jurusans,kode,' . $data->id,
         ], [
             'kode.unique' => 'Kode jurusan sudah terdaftar.',
         ]);
-        if (!$data) {
-            return redirect()->back()->with('error', 'Jurusan tidak ditemukan!');
-        }
         $data->update($request->all());
         return redirect()->route('jurusan.index')->with('success', 'Jurusan berhasil diupdate!');
     }
