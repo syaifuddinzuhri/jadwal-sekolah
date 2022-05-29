@@ -74,11 +74,6 @@ class JurusanController extends Controller
      */
     public function show($id)
     {
-        $data = Jurusan::find($id);
-        if (!$data) {
-            return redirect()->route('jurusan.index')->with('error', 'Jurusan tidak ditemukan!');
-        }
-        return view('admin.jurusan.detail', compact('data'));
     }
 
     /**
@@ -126,9 +121,12 @@ class JurusanController extends Controller
      */
     public function destroy($id)
     {
-        $prestasi = Jurusan::findOrFail($id);
-        $prestasi->delete();
-        toast('Jurusan berhasil dihapus!', 'success');
-        return redirect()->back();
+        $data = Jurusan::findOrFail($id);
+        try {
+            $data->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Jurusan ' . $data->nama . ' masih digunakan dalam data lain!');
+        }
+        return redirect()->back()->with('success', 'Jurusan berhasil dihapus.');
     }
 }
