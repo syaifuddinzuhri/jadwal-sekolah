@@ -34,7 +34,7 @@ class StoreKelasRequest extends FormRequest
     {
         return [
             'jurusan_id.required' => 'Jurusan harus diisi.',
-            'tingkat.unique' => 'Tingkat kelas harus diisi.',
+            'tingkat.required' => 'Tingkat kelas harus diisi.',
             'nama.required' => 'Nama kelas harus diisi.',
         ];
     }
