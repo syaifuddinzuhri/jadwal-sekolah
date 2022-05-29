@@ -37,6 +37,24 @@
                     </div>
                 </div>
             </li>
+            <li
+                class="nav-item {{ Request::is('tahun-akademik') || Request::is('tahun-akademik/*') || Request::is('kelas') || Request::is('kelas/*') ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Data Akademik</span>
+                </a>
+                <div id="collapseTwo"
+                    class="collapse {{ $agent == false && (Request::is('tahun-akademik') || Request::is('tahun-akademik/*') || Request::is('kelas') || Request::is('kelas/*')) ? 'show' : '' }}"
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item {{ Request::is('tahun-akademik') || Request::is('tahun-akademik/*') ? 'active' : '' }}"
+                            href="{{ route('tahun-akademik.index') }}">Tahun Akademik</a>
+                        <a class="collapse-item {{ Request::is('kelas') || Request::is('kelas/*') ? 'active' : '' }}"
+                            href="{{ route('kelas.index') }}">Mata Pelajaran</a>
+                    </div>
+                </div>
+            </li>
             <li class="nav-item {{ Request::is('guru') || Request::is('guru/*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('guru.index') }}">
                     <i class="fas fa-fw fa-chalkboard-teacher"></i>
