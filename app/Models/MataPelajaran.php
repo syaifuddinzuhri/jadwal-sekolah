@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MataPelajaran extends Model
 {
@@ -28,6 +30,16 @@ class MataPelajaran extends Model
     public function tahun_akademik(): BelongsTo
     {
         return $this->belongsTo(TahunAkademik::class, 'tahun_akademik_id');
+    }
+
+    /**
+     * The pengajars that belong to the MataPelajaran
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function pengajars(): BelongsToMany
+    {
+        return $this->belongsToMany(Guru::class, 'guru_pengajars', 'mata_pelajaran_id', 'guru_id');
     }
 
     /**

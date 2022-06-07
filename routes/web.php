@@ -32,6 +32,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/jadwal', [DashboardController::class, 'index'])->name('jadwal.index');
+        Route::get('/guru/pengajar/{id}', [GuruController::class, 'pengajar'])->name('guru.pengajar');
+        Route::post('/guru/pengajar/simpanmapel', [GuruController::class, 'simpanmapel'])->name('guru.simpanmapel');
+        Route::delete('/guru/pengajar/delete/{id}', [GuruController::class, 'hapusmapel'])->name('guru.hapusmapel');
         Route::resource('siswa', SiswaController::class);
         Route::resource('guru', GuruController::class);
         Route::resource('kelas', KelasController::class);

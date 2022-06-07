@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGuruRequest;
 use App\Models\Guru;
+use App\Models\GuruPengajar;
 use App\Models\MataPelajaran;
+use App\Models\TahunAkademik;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class GuruController extends Controller
@@ -36,6 +39,8 @@ class GuruController extends Controller
                     $button = '<div class="btn-group" role="group">';
                     $button .= '<a href="/guru/' . $data->id . '/edit" class="btn btn-sm btn-warning" >
                            <i class="fa fa-edit" aria-hidden="true"></i> </a>';
+                    $button .= '<a href="/guru/pengajar/' . $data->id . '" class="btn btn-sm btn-success" >
+                           <i class="fa fa-book" aria-hidden="true"></i> </a>';
                     $button .= '<a href="javascript:void(0)" data-id="' . $data->id . '" data-toggle="modal" data-target="#delete-guru-modal"class="btn btn-sm btn-danger delete-guru">
                            <i class="fa fa-trash" aria-hidden="true"></i></a>';
                     $button .= '</div>';
@@ -130,5 +135,53 @@ class GuruController extends Controller
             return redirect()->back()->with('error', 'Data guru masih digunakan dalam data lain!');
         }
         return redirect()->back()->with('success', 'Data guru berhasil dihapus.');
+    }
+
+    public function pengajar($id, Request $request)
+    {
+        $tahun = $request->tahun ?? null;
+        $query_tahun = TahunAkademik::query();
+        if ($tahun == null) {
+            $query_tahun->latest();
+        } else {
+            $query_tahun->where('id', $tahun);
+        }
+        $tahun = $query_tahun->first();
+        $all_tahun = TahunAkademik::get();
+        $query_mapel = MataPelajaran::with('kelas.jurusan');
+        if ($tahun) {
+            $query_mapel->where('tahun_akademik_id', $tahun->id);
+        }
+        $mapel = $query_mapel->doesntHave('pengajars')->get();
+        $guru = Guru::with(['pengajars'])->find($id);
+        $data_guru = Guru::find($id);
+
+        $mapels = GuruPengajar::with('mapel.kelas.jurusan')->whereHas('mapel', function ($q) use ($tahun) {
+            $q->where('tahun_akademik_id', $tahun->id);
+        })->where('guru_id', $id)->get();
+        return view('admin.guru.pengajar', compact('data_guru', 'guru', 'tahun', 'mapel', 'all_tahun', 'mapels'));
+    }
+
+    public function simpanmapel(Request $request)
+    {
+        $guru = Guru::find($request->id);
+        // if ($request->isMethod('post')) {
+        $guru->mapels()->attach($request->mapels);
+        // }
+        // if ($request->isMethod('put')){
+        // $guru->mapels()->sync($request->mapels);
+        // }
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil di update');
+    }
+
+    public function hapusmapel($id)
+    {
+        $data = GuruPengajar::findOrFail($id);
+        try {
+            $data->delete();
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Data masih digunakan dalam data lain!');
+        }
+        return redirect()->back()->with('success', 'Data berhasil dihapus.');
     }
 }
