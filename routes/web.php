@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\MataPelajaranController;
+use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\TahunAkademikController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -29,9 +31,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::group(['middleware' => ['role:admin']], function () {
-        Route::get('/guru', [DashboardController::class, 'index'])->name('guru.index');
         Route::get('/jadwal', [DashboardController::class, 'index'])->name('jadwal.index');
-        Route::get('/siswa', [DashboardController::class, 'index'])->name('siswa.index');
+        Route::resource('siswa', SiswaController::class);
+        Route::resource('guru', GuruController::class);
         Route::resource('kelas', KelasController::class);
         Route::resource('jurusan', JurusanController::class);
         Route::resource('tahun-akademik', TahunAkademikController::class);

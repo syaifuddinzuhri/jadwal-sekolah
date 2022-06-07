@@ -58,7 +58,7 @@
             <li class="nav-item {{ Request::is('guru') || Request::is('guru/*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('guru.index') }}">
                     <i class="fas fa-fw fa-chalkboard-teacher"></i>
-                    <span>Data Pengajar</span></a>
+                    <span>Data Guru</span></a>
             </li>
             <li class="nav-item {{ Request::is('siswa') || Request::is('siswa/*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('siswa.index') }}">
