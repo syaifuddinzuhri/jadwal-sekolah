@@ -24,10 +24,10 @@
                             @if ($j->day_id == $item->id)
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <div class="col-2">
-                                            <span class="font-weight-bold">{{ '(' . $j->mapel->kode_mapel . ')' }}</span>
+                                        <div class="col-md-2 col-3">
+                                            <small class="font-weight-bold">{{ '(' . $j->mapel->kode_mapel . ')' }}</small>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-md-6 col-9">
                                             <span class="text-dark font-weight-bold">{{ $j->mapel->nama_mapel }}
                                                 <br></span>
                                             @if ($j->mapel->pengajars->isNotEmpty())
@@ -35,10 +35,10 @@
                                                     class="font-italic">{{ $j->mapel->pengajars[0]->nama . ',' . $j->mapel->pengajars[0]->gelar }}</span>
                                             @endif
                                         </div>
-                                        <div class="col-2 text-center">
+                                        <div class="col-md-2 col-6">
                                             <small>{{ date('H:i', strtotime($j->mapel->start)) . ' - ' . date('H:i', strtotime($j->mapel->end)) }}</small>
                                         </div>
-                                        <div class="col-2 text-right">
+                                        <div class="col-md-2 col-6 text-right">
                                             {{-- <a href="" class="btn btn-sm btn-warning">
                                                 <i class="fa fa-edit" aria-hidden="true"></i> </a> --}}
                                             <a href="javascript:void(0)" data-toggle="modal"
