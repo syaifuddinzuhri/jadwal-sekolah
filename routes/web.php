@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\JadwalController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\MataPelajaranController;
@@ -31,10 +32,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::group(['middleware' => ['role:admin']], function () {
-        Route::get('/jadwal', [DashboardController::class, 'index'])->name('jadwal.index');
         Route::get('/guru/pengajar/{id}', [GuruController::class, 'pengajar'])->name('guru.pengajar');
         Route::post('/guru/pengajar/simpanmapel', [GuruController::class, 'simpanmapel'])->name('guru.simpanmapel');
         Route::delete('/guru/pengajar/delete/{id}', [GuruController::class, 'hapusmapel'])->name('guru.hapusmapel');
+        Route::get('/jadwal/list', [JadwalController::class, 'list'])->name('jadwal.list');
+        Route::resource('jadwal', JadwalController::class);
         Route::resource('siswa', SiswaController::class);
         Route::resource('guru', GuruController::class);
         Route::resource('kelas', KelasController::class);

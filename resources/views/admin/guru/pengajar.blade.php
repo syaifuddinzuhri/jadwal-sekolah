@@ -37,9 +37,7 @@
                                         @foreach ($all_tahun as $item)
                                             <option value="{{ $item->id }}"
                                                 {{ $tahun ? ($tahun->id == $item->id ? 'selected' : '') : '' }}>
-                                                {{ $item->tahun_1 }}
-                                                /
-                                                {{ $item->tahun_2 }}
+                                                {{ $item->tahun_1 . ' / ' . $item->tahun_2 . ' (' . $item->semester . ')' }}
                                             </option>
                                         @endforeach
                                     </select>

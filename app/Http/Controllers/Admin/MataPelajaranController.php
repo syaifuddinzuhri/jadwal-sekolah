@@ -26,7 +26,7 @@ class MataPelajaranController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('tahun', function ($data) {
-                    return '<div>' . $data->tahun_akademik->tahun_1 . ' / ' . $data->tahun_akademik->tahun_2 . '</div>';
+                    return '<div>' . $data->tahun_akademik->tahun_1 . ' / ' . $data->tahun_akademik->tahun_2 . ' (' . $data->tahun_akademik->semester . ')' . '</div>';
                 })
                 ->addColumn('waktu', function ($data) {
                     return '<div>' . $data->start . ' - ' . $data->end . '</div>';

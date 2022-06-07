@@ -25,7 +25,8 @@ class TahunAkademikRequest extends FormRequest
     {
         return [
             'tahun_1' => 'required',
-            'tahun_2' => 'required'
+            'tahun_2' => 'required',
+            'semester' => 'required',
         ];
     }
 
@@ -34,6 +35,7 @@ class TahunAkademikRequest extends FormRequest
         return [
             'tahun_1.required' => 'Tahun awal harus diisi.',
             'tahun_2.required' => 'Tahun akhir harus diisi.',
+            'semester.required' => 'Semester harus diisi.',
         ];
     }
 }

@@ -47,6 +47,20 @@
                                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-12 mt-3">
+                                    <div class="form-group">
+                                        <label for="semester">Pilih Semester</label>
+                                        <select class="form-control  @error('semester') is-invalid @enderror"
+                                            name="semester" id="semester">
+                                            <option disabled>-- Pilih Semester --</option>
+                                            <option value="1" {{$data->semester == 1 ? 'selected' : ''}}>Ganjil</option>
+                                            <option value="2" {{$data->semester == 2 ? 'selected' : ''}}>Genap</option>
+                                        </select>
+                                        @error('semester')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-success mt-3">Simpan</button>
                         </form>

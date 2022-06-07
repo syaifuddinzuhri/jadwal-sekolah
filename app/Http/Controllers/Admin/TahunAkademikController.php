@@ -24,6 +24,9 @@ class TahunAkademikController extends Controller
                 ->addColumn('tahun', function ($data) {
                     return '<div>' . $data->tahun_1 . ' / ' . $data->tahun_2 . '</div>';
                 })
+                ->addColumn('smt', function ($data) {
+                    return $data->semester == 1 ? 'Ganjil' : 'Genap';
+                })
                 ->addColumn('action', function ($data) {
                     $button = '<div class="btn-group" role="group">';
                     $button .= '<a href="/tahun-akademik/' . $data->id . '/edit" class="btn btn-sm btn-warning" >
@@ -33,7 +36,7 @@ class TahunAkademikController extends Controller
                     $button .= '</div>';
                     return $button;
                 })
-                ->rawColumns(['action', 'tahun'])
+                ->rawColumns(['action', 'tahun', 'smt'])
                 ->make(true);
         }
         return view('admin.tahun-akademik.index', compact('data'));

@@ -55,6 +55,20 @@
                                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="col-12 mt-3">
+                                    <div class="form-group">
+                                        <label for="semester">Pilih Semester</label>
+                                        <select class="form-control  @error('semester') is-invalid @enderror"
+                                            name="semester" id="semester">
+                                            <option disabled>-- Pilih Semester --</option>
+                                            <option value="1">Ganjil</option>
+                                            <option value="2">Genap</option>
+                                        </select>
+                                        @error('semester')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-success mt-3">Simpan</button>
                         </form>
@@ -72,6 +86,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Tahun</th>
+                                    <th>Semester</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -138,6 +153,10 @@
                 {
                     data: "tahun",
                     name: "tahun",
+                },
+                {
+                    data: "smt",
+                    name: "smt",
                 },
                 {
                     data: "action",
