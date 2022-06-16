@@ -65,7 +65,7 @@
                                         @csrf
                                         <div class="form-group">
                                             <input type="email"
-                                                class="form-control form-control-user @error('email') is-invalid @enderror"
+                                                class="form-control  @error('email') is-invalid @enderror"
                                                 id="email" aria-describedby="emailHelp" placeholder="Email"
                                                 name="email">
                                             @error('email')
@@ -74,8 +74,20 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password"
-                                                class="form-control form-control-user @error('password') is-invalid @enderror"
+                                                class="form-control  @error('password') is-invalid @enderror"
                                                 id="password" placeholder="Password" name="password">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <select
+                                                class="form-control @error('role') is-invalid @enderror"
+                                                name="role" id="role">
+                                                <option disabled>-- Pilih Role --</option>
+                                                <option value="admin">Admin</option>
+                                                <option value="guru">Guru</option>
+                                            </select>
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                             @enderror

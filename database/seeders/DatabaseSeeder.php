@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Days;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -17,11 +18,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        User::create([
+        Admin::create([
             'name' => 'Administrator',
             'email' => 'admin.sman1turen@gmail.com',
             'password' => Hash::make('4dminsman1turen'),
-            'role' => 'admin'
         ]);
 
         Days::insert([

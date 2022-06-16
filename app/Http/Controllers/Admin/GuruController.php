@@ -8,9 +8,11 @@ use App\Models\Guru;
 use App\Models\GuruPengajar;
 use App\Models\MataPelajaran;
 use App\Models\TahunAkademik;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
 class GuruController extends Controller
@@ -73,6 +75,7 @@ class GuruController extends Controller
         $request->validated();
         $payload = $request->all();
         Guru::create($payload);
+
         return redirect()->route('guru.index')->with('success', 'Data guru berhasil ditambahkan.');
     }
 
@@ -117,6 +120,9 @@ class GuruController extends Controller
             return redirect()->back()->with('error', 'Data guru tidak ditemukan');
         }
         $data->update($request->all());
+
+        $user = User::find($data->user_id);
+
         return redirect()->route('guru.index')->with('success', 'Data guru berhasil di update');
     }
 

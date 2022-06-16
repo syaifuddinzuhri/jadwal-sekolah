@@ -37,7 +37,7 @@
             <div class="modal-body">Klik "Logout" dibawah jika kamu ingin keluar dari sistem.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
-                <form action="{{ route('auth.logout') }}" method="POST">
+                <form action="{{ route('auth.adminlogout') }}" method="POST">
                     @csrf
                     <button class="btn btn-danger">Logout</button>
                 </form>

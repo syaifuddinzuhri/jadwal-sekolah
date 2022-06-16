@@ -60,11 +60,11 @@
                     <i class="fas fa-fw fa-chalkboard-teacher"></i>
                     <span>Data Guru</span></a>
             </li>
-            <li class="nav-item {{ Request::is('siswa') || Request::is('siswa/*') ? 'active' : '' }}">
+            {{-- <li class="nav-item {{ Request::is('siswa') || Request::is('siswa/*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('siswa.index') }}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Data Siswa</span></a>
-            </li>
+            </li> --}}
             <li class="nav-item {{ Request::is('jadwal') || Request::is('jadwal/*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('jadwal.index') }}">
                     <i class="fas fa-fw fa-calendar-alt"></i>

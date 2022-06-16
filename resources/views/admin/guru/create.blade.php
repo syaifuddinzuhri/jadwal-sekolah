@@ -91,6 +91,24 @@
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            id="email" aria-describedby="email" placeholder="Email"
+                                            name="email">
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            id="password" aria-describedby="password" placeholder="Password"
+                                            name="password">
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">

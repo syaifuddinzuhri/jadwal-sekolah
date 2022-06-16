@@ -34,7 +34,7 @@
                                     name="tahun_akademik_id" id="tahun_akademik">
                                     <option disabled>-- Pilih Tahun Akademik --</option>
                                     @foreach ($tahun as $item)
-                                        <option value="{{ $item->id }}">{{ $item->tahun_1 }} / {{ $item->tahun_2 }}
+                                        <option value="{{ $item->id }}">{{ $item->tahun_1 }} / {{ $item->tahun_2 }} {{ $item->semester == 1 ?'Ganjil' : 'Genap' }}
                                         </option>
                                     @endforeach
                                 </select>

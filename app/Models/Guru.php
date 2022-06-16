@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Guru extends Model
-{
-    use HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
+class Guru extends Authenticatable
+{
     protected $fillable = [
         'nama',
         'gelar',
@@ -26,7 +28,20 @@ class Guru extends Model
         'kab_kota',
         'kecamatan',
         'desa',
+        'email',
+        'password',
     ];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public function setPasswordAttribute($value)
+    {
+        if ($value != null) {
+            $this->attributes['password'] = Hash::make($value);
+        }
+    }
 
     public function setProvinsiAttribute($value)
     {
