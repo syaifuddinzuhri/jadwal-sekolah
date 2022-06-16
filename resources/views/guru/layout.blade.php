@@ -54,6 +54,15 @@
         </div>
     </nav>
 
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-12">
+                <h6 class="text-dark m-0">Nama : {{ Auth::guard('guru')->user()->nama }} | Email :
+                    {{ Auth::guard('guru')->user()->email }}</h6>
+            </div>
+        </div>
+    </div>
+    <hr>
     @yield('content')
 
 
