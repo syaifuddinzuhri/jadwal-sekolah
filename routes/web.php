@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth:guru']], function () {
 
 Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::post('/action', [DashboardController::class, 'action'])->name('dashboard.action');
     // Route::group(['prefix' => 'admin'], function () {
         Route::post('logout', [AuthController::class, 'adminLogout'])->name('auth.adminlogout');
         // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
