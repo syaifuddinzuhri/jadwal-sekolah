@@ -59,8 +59,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="nip">NIP</label>
-                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" id="nip"
-                                            aria-describedby="nip" placeholder="NIP" name="nip">
+                                        <input type="text" class="form-control @error('nip') is-invalid @enderror"
+                                            id="nip" aria-describedby="nip" placeholder="NIP" name="nip">
                                         @error('nip')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
@@ -75,7 +75,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="tempat_lahir">Tempat Lahir</label>
-                                        <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                        <input type="text"
+                                            class="form-control @error('tempat_lahir') is-invalid @enderror"
                                             id="tempat_lahir" aria-describedby="tempat_lahir" placeholder="Tempat Lahir"
                                             name="tempat_lahir">
                                         @error('tempat_lahir')
@@ -94,17 +95,16 @@
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            id="email" aria-describedby="email" placeholder="Email"
-                                            name="email">
+                                            id="email" aria-describedby="email" placeholder="Email" name="email">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            id="password" aria-describedby="password" placeholder="Password"
-                                            name="password">
+                                        <input type="password"
+                                            class="form-control @error('password') is-invalid @enderror" id="password"
+                                            aria-describedby="password" placeholder="Password" name="password">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
@@ -114,7 +114,8 @@
                                     <div class="form-group">
                                         <label for="no_hp">Nomor HP/WA</label>
                                         <input type="number" class="form-control @error('no_hp') is-invalid @enderror"
-                                            id="no_hp" aria-describedby="no_hp" placeholder="Nomor HP/WA" name="no_hp">
+                                            id="no_hp" aria-describedby="no_hp" placeholder="Nomor HP/WA"
+                                            name="no_hp">
                                         @error('no_hp')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
@@ -128,37 +129,37 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="select_provinces">Provinsi</label>
-                                        <select class="form-control  @error('provinsi') is-invalid @enderror"
-                                            name="provinsi" id="select_provinces">
-                                        </select>
+                                        <label for="provinsi">Provinsi</label>
+                                        <input type="text"
+                                            class="form-control @error('provinsi') is-invalid @enderror" id="provinsi"
+                                            aria-describedby="provinsi" placeholder="Provinsi" name="provinsi">
                                         @error('provinsi')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="select_regencies">Kabupaten/Kota</label>
-                                        <select class="form-control  @error('kab_kota') is-invalid @enderror"
-                                            name="kab_kota" id="select_regencies">
-                                        </select>
+                                        <label for="kab_kota">Kabupaten/Kota</label>
+                                        <input type="text"
+                                            class="form-control @error('kab_kota') is-invalid @enderror" id="kab_kota"
+                                            aria-describedby="kab_kota" placeholder="Kabupaten/Kota" name="kab_kota">
                                         @error('kab_kota')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="select_districts">Kecamatan</label>
-                                        <select class="form-control  @error('kecamatan') is-invalid @enderror"
-                                            name="kecamatan" id="select_districts">
-                                        </select>
+                                        <label for="kecamatan">Kecamatan</label>
+                                        <input type="text"
+                                            class="form-control @error('kecamatan') is-invalid @enderror" id="kecamatan"
+                                            aria-describedby="kecamatan" placeholder="Kecamatan" name="kecamatan">
                                         @error('kecamatan')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="select_villages">Desa/Kelurahan</label>
-                                        <select class="form-control  @error('desa') is-invalid @enderror" name="desa"
-                                            id="select_villages">
-                                        </select>
+                                        <label for="desa">Desa/Kelurahan</label>
+                                        <input type="text" class="form-control @error('desa') is-invalid @enderror"
+                                            id="desa" aria-describedby="desa" placeholder="Desa/Kelurahan"
+                                            name="desa">
                                         @error('desa')
                                             <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                         @enderror
