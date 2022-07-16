@@ -72,16 +72,6 @@ class Guru extends Authenticatable
     }
 
     /**
-     * Get all of the jabatans for the Guru
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function jabatans(): HasMany
-    {
-        return $this->hasMany(JabatanGuru::class);
-    }
-
-    /**
      * The pengajars that belong to the MataPelajaran
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

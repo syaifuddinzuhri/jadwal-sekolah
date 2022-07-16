@@ -18,6 +18,7 @@ class CreateGuruPengajarsTable extends Migration
             $table->unsignedBigInteger('guru_id');
             $table->unsignedBigInteger('mata_pelajaran_id');
             $table->foreign('mata_pelajaran_id')->references('id')->on('mata_pelajarans')->onDelete('RESTRICT')->onUpdate('CASCADE');
+            $table->foreign('guru_id')->references('id')->on('gurus')->onDelete('RESTRICT')->onUpdate('CASCADE');
             $table->timestamps();
         });
     }

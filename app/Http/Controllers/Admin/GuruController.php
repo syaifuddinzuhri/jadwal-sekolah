@@ -24,7 +24,7 @@ class GuruController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Guru::with(['jabatans', 'pengajars'])->get();
+        $data = Guru::with(['pengajars'])->get();
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -121,8 +121,6 @@ class GuruController extends Controller
         }
         $data->update($request->all());
 
-        $user = User::find($data->user_id);
-
         return redirect()->route('guru.index')->with('success', 'Data guru berhasil di update');
     }
 
@@ -161,10 +159,13 @@ class GuruController extends Controller
         $mapel = $query_mapel->doesntHave('pengajars')->get();
         $guru = Guru::with(['pengajars'])->find($id);
         $data_guru = Guru::find($id);
-
-        $mapels = GuruPengajar::with('mapel.kelas.jurusan')->whereHas('mapel', function ($q) use ($tahun) {
-            $q->where('tahun_akademik_id', $tahun->id);
-        })->where('guru_id', $id)->get();
+        $query = GuruPengajar::with('mapel.kelas.jurusan');
+        if ($tahun) {
+            $query->whereHas('mapel', function ($q) use ($tahun) {
+                $q->where('tahun_akademik_id', $tahun->id);
+            });
+        }
+        $mapels = $query->where('guru_id', $id)->get();
         return view('admin.guru.pengajar', compact('data_guru', 'guru', 'tahun', 'mapel', 'all_tahun', 'mapels'));
     }
 
