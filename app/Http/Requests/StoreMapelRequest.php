@@ -25,7 +25,6 @@ class StoreMapelRequest extends FormRequest
     {
         return [
             'tahun_akademik_id' => 'required',
-            'kelas_id' => 'required',
             'kode_mapel' => 'required|unique:mata_pelajarans,kode_mapel,NULL',
             'nama_mapel' => 'required',
             'total_jam' => 'required',
@@ -38,7 +37,6 @@ class StoreMapelRequest extends FormRequest
     {
         return [
             'tahun_akademik_id.required' => 'Tahun akademik harus diisi.',
-            'kelas_id.required' => 'Kelas harus diisi.',
             'kode_mapel.required' => 'Kode mapel harus diisi.',
             'kode_mapel.unique' => 'Kode mapel sudah digunakan.',
             'nama_mapel.required' => 'Nama mapel harus diisi.',
