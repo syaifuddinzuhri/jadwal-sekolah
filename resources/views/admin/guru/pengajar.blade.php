@@ -62,8 +62,6 @@
                                                     <label class="form-check-label" for="{{ 'mapel' . $item->id }}">
                                                         <span
                                                             class="font-weight-bold">{{ $item->kode_mapel . ' / ' . $item->nama_mapel }}</span>
-                                                        <br>
-                                                        {{ $item->kelas->tingkat . ' ' . $item->kelas->nama . ' / ' . $item->kelas->jurusan->nama }}
                                                     </label>
                                                 </div>
                                             </div>
@@ -71,8 +69,7 @@
                                     @else
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                             Mata Pelajaran belum ada
-                                            <button type="button" class="close" data-dismiss="alert"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -114,8 +111,6 @@
                                         <div class="col-10">
                                             <span
                                                 class="font-weight-bold">{{ $no . '. ' . $item->mapel->kode_mapel . ' / ' . $item->mapel->nama_mapel }}</span>
-                                            <br>
-                                            {{ $item->mapel->kelas->tingkat . ' ' . $item->mapel->kelas->nama . ' / ' . $item->mapel->kelas->jurusan->nama }}
                                         </div>
                                         <div class="col-2">
                                             <a href="javascript:void(0)" data-id="{{ $item->id }}" data-toggle="modal"

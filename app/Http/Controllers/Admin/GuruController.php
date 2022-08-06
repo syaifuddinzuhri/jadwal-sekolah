@@ -152,14 +152,14 @@ class GuruController extends Controller
         }
         $tahun = $query_tahun->first();
         $all_tahun = TahunAkademik::get();
-        $query_mapel = MataPelajaran::with('kelas.jurusan');
+        $query_mapel = MataPelajaran::query();
         if ($tahun) {
             $query_mapel->where('tahun_akademik_id', $tahun->id);
         }
         $mapel = $query_mapel->doesntHave('pengajars')->get();
         $guru = Guru::with(['pengajars'])->find($id);
         $data_guru = Guru::find($id);
-        $query = GuruPengajar::with('mapel.kelas.jurusan');
+        $query = GuruPengajar::with('mapel');
         if ($tahun) {
             $query->whereHas('mapel', function ($q) use ($tahun) {
                 $q->where('tahun_akademik_id', $tahun->id);
