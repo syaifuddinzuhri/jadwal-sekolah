@@ -40,7 +40,6 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Tahun Akademik</th>
-                                    <th>Kelas / Jurusan</th>
                                     <th>Kode Mapel</th>
                                     <th>Nama Mapel</th>
                                     <th>Total Jam/hari</th>
@@ -111,10 +110,6 @@
                 {
                     data: "tahun",
                     name: "tahun",
-                },
-                {
-                    data: "kelas",
-                    name: "kelas",
                 },
                 {
                     data: "kode_mapel",

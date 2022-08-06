@@ -49,7 +49,7 @@ class JadwalController extends Controller
         $tahun = TahunAkademik::find($request->tahun);
         $kelas = Kelas::with('jurusan')->find($request->kelas);
         $day = Days::find($request->day);
-        $mapels = MataPelajaran::where('tahun_akademik_id', $tahun->id)->where('kelas_id', $kelas->id)->get();
+        $mapels = MataPelajaran::where('tahun_akademik_id', $tahun->id)->get();
         return view('admin.jadwal.create', compact('tahun', 'kelas', 'day', 'mapels'));
     }
 
@@ -62,6 +62,10 @@ class JadwalController extends Controller
     public function store(JadwalRequest $request)
     {
         $request->validated();
+        $exists = Jadwal::where('mata_pelajaran_id', $request->mata_pelajaran_id)->where('day_id', $request->day_id)->where('urutan', $request->urutan)->exists();
+        if($exists){
+            return redirect()->back()->with('error', 'Sudah ada jadwal yang sama pada letak urutan dan hari!');
+        }
         Jadwal::create($request->all());
         return redirect()->route('jadwal.list', ['tahun' => $request->tahun_akademik_id, 'kelas' => $request->kelas_id])->with('success', 'Jadwal baru berhasil ditambahkan!');
     }

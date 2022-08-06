@@ -21,7 +21,7 @@ class MataPelajaranController extends Controller
      */
     public function index(Request $request)
     {
-        $data = MataPelajaran::with(['kelas.jurusan', 'tahun_akademik'])->get();
+        $data = MataPelajaran::with(['tahun_akademik'])->get();
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -30,9 +30,6 @@ class MataPelajaranController extends Controller
                 })
                 ->addColumn('waktu', function ($data) {
                     return '<div>' . $data->start . ' - ' . $data->end . '</div>';
-                })
-                ->addColumn('kelas', function ($data) {
-                    return '<div>' . $data->kelas->tingkat . ' ' . $data->kelas->nama . ' / ' . $data->kelas->jurusan->nama . '</div>';
                 })
                 ->addColumn('action', function ($data) {
                     $button = '<div class="btn-group" role="group">';
@@ -57,9 +54,8 @@ class MataPelajaranController extends Controller
      */
     public function create()
     {
-        $kelas = Kelas::with('jurusan')->get();
         $tahun = TahunAkademik::get();
-        return view('admin.mapel.create', compact('kelas', 'tahun'));
+        return view('admin.mapel.create', compact('tahun'));
     }
 
     /**
@@ -97,13 +93,12 @@ class MataPelajaranController extends Controller
      */
     public function edit($id)
     {
-        $kelas = Kelas::with('jurusan')->get();
         $tahun = TahunAkademik::get();
         $data = MataPelajaran::find($id);
         if (!$data) {
             return redirect()->route('mapel.index')->with('error', 'Mata pelajaran tidak ditemukan!');
         }
-        return view('admin.mapel.edit', compact('kelas', 'tahun', 'data'));
+        return view('admin.mapel.edit', compact('tahun', 'data'));
     }
 
     /**

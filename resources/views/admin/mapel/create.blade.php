@@ -43,21 +43,6 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="kelas">Pilih Kelas</label>
-                                <select class="form-control  @error('kelas_id') is-invalid @enderror" name="kelas_id"
-                                    id="kelas">
-                                    <option disabled>-- Pilih Kelas --</option>
-                                    @foreach ($kelas as $item)
-                                        <option value="{{ $item->id }}">{{ $item->tingkat }} {{ $item->nama }} /
-                                            {{ $item->jurusan->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('kelas_id')
-                                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
                                 <label for="kode_mapel">Kode Mata Pelajaran</label>
                                 <input type="text" class="form-control @error('kode_mapel') is-invalid @enderror"
                                     id="kode_mapel" aria-describedby="kode_mapel" placeholder="Kode mata pelajaran"

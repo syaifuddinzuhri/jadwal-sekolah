@@ -14,7 +14,6 @@ class MataPelajaran extends Model
 
     protected $fillable = [
         'tahun_akademik_id',
-        'kelas_id',
         'kode_mapel',
         'nama_mapel',
         'total_jam',
@@ -40,15 +39,5 @@ class MataPelajaran extends Model
     public function pengajars(): BelongsToMany
     {
         return $this->belongsToMany(Guru::class, 'guru_pengajars', 'mata_pelajaran_id', 'guru_id');
-    }
-
-    /**
-     * Get the kelas that owns the MataPelajaran
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function kelas(): BelongsTo
-    {
-        return $this->belongsTo(Kelas::class, 'kelas_id');
     }
 }
